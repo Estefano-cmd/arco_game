@@ -1,0 +1,734 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
+:root {
+  color-scheme: dark;
+  --bg: #130c27;
+  --ink: #f9efff;
+  --muted: #b9a7c9;
+  --lav: #d4a4f7;
+  --gold: #e8cb92;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+}
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -35%, #432456 0, transparent 56%), #130c27;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+#app {
+  max-width: 1450px;
+  margin: auto;
+  padding: 0 50px;
+}
+.topbar {
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff13;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1.15;
+}
+.brand small {
+  display: block;
+  letter-spacing: 5px;
+  font-size: 10px;
+  color: var(--lav);
+  margin-top: 3px;
+}
+.brand-symbol {
+  display: grid;
+  place-items: center;
+  border: 1px solid #a779c2;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  color: #f2d6ff;
+  font-size: 26px;
+}
+.topright {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.top-tag,
+.kicker,
+.chapter,
+.hud-label,
+.progress-title,
+.footer,
+.overlay-kicker,
+.reward-kicker {
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 11px;
+}
+.top-tag {
+  color: #b9a2c8;
+}
+.iconbtn {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 1px solid #7c5b90;
+  background: #ffffff0c;
+  color: #e9d6f8;
+  font-size: 21px;
+}
+.hero {
+  text-align: center;
+  padding: 38px 0 31px;
+}
+.kicker {
+  color: #c19bd7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.line {
+  width: 27px;
+  height: 1px;
+  background: #a77ab7;
+}
+.hero h1 {
+  font:
+    500 clamp(33px, 3.9vw, 58px)/1.14 "Playfair Display",
+    serif;
+  margin: 14px 0;
+  color: #fff9ff;
+}
+.hero h1 i,
+.reward-modal h2 i,
+.ticket h3 i {
+  color: #e0b0fa;
+  font-weight: 500;
+}
+.sparkle {
+  color: #d8b2ee;
+  font-size: 32px;
+  vertical-align: top;
+  margin-left: 8px;
+}
+.sub {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 15px 0 0;
+}
+.game-shell {
+  border: 1px solid #7b568a77;
+  background: #201335;
+  box-shadow:
+    0 28px 90px #07050e80,
+    0 0 0 6px #ffffff04;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.hud {
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 28px;
+  background: linear-gradient(90deg, #231537, #2c193e, #211435);
+  border-bottom: 1px solid #9c77ab49;
+}
+.hud-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 235px;
+}
+.chapter {
+  color: #cf9ce9;
+}
+.level-name {
+  font:
+    500 21px "Playfair Display",
+    serif;
+}
+.hud-center {
+  text-align: center;
+}
+.hud-label {
+  color: #b59ac6;
+  display: block;
+  font-size: 10px;
+  margin-bottom: 6px;
+}
+.hearts {
+  color: #e5b5f7;
+  font-size: 27px;
+  letter-spacing: 5px;
+  white-space: nowrap;
+}
+.hud-right {
+  display: flex;
+  gap: 30px;
+  text-align: center;
+}
+.hud-right b {
+  font-size: 24px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #191334;
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200/620;
+  touch-action: none;
+  cursor: crosshair;
+}
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #100b2b91;
+  backdrop-filter: blur(6px);
+  transition: opacity 0.2s;
+}
+.game-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.overlay-inner {
+  text-align: center;
+  max-width: 470px;
+  padding: 20px 22px;
+}
+.seal {
+  border: 1px solid #dfb9ff70;
+  background: #a46bc322;
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  font-size: 42px;
+  color: #f4d5ff;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 50px #c58be444;
+}
+.overlay-kicker {
+  color: #e5bdf2;
+}
+.overlay-inner h2 {
+  font:
+    500 clamp(30px, 4vw, 49px) "Playfair Display",
+    serif;
+  margin: 12px 0;
+}
+.overlay-inner p:not(.overlay-kicker) {
+  color: #dac9e8;
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 27px;
+}
+.primary {
+  background: linear-gradient(110deg, #e5b2fa, #c48be7);
+  color: #392048;
+  border: 0;
+  border-radius: 6px;
+  padding: 15px 27px;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 9px 32px #bc86dd44;
+}
+.primary:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+.primary span {
+  margin-left: 16px;
+}
+.touch-hint {
+  position: absolute;
+  bottom: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #160e2cb8;
+  border: 1px solid #ffffff28;
+  color: #ead4ee;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  min-height: 83px;
+  padding: 15px 28px;
+  background: #221434;
+}
+.progress {
+  width: 240px;
+}
+.progress-title {
+  color: #d5b9e5;
+}
+.progress > span:nth-child(2) {
+  float: right;
+  color: #d8b6e7;
+  font-size: 11px;
+}
+.progress-track {
+  height: 5px;
+  border-radius: 8px;
+  margin-top: 11px;
+  background: #ffffff1e;
+  overflow: hidden;
+}
+.progress-track div {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #eebcf9, #aa69ca);
+  transition: width 0.35s;
+}
+.tips {
+  color: #baa4cb;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+.mouse-icon {
+  font-size: 25px;
+  color: #dab7ef;
+}
+.restart {
+  background: transparent;
+  border: 1px solid #78518e;
+  color: #e3c7f1;
+  padding: 11px 18px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.restart:hover {
+  background: #ffffff15;
+}
+.footer {
+  color: #856e98;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 28px 0 34px;
+  font-size: 10px;
+}
+.reward-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  background: #0c071ce8;
+  backdrop-filter: blur(12px);
+  overflow: auto;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 12px;
+}
+.reward-backdrop.show {
+  display: flex;
+}
+.reward-modal {
+  position: relative;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0, #543166 0, transparent 52%), #241338;
+  border: 1px solid #ba8ada80;
+  width: min(100%, 525px);
+  padding: 31px 38px 32px;
+  border-radius: 17px;
+  box-shadow: 0 25px 90px #0008;
+  animation: rewardIn 0.5s both;
+}
+.reward-close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  background: none;
+  border: 0;
+  color: #ddd;
+  font-size: 32px;
+}
+.reward-decor {
+  color: #d4b1f0;
+  letter-spacing: 18px;
+}
+.reward-kicker {
+  color: #dcc0e8;
+  margin: 17px 0 11px;
+}
+.reward-modal h2 {
+  font:
+    500 44px/1.14 "Playfair Display",
+    serif;
+  margin: 0;
+}
+.reward-sub {
+  color: #c9b1d4;
+  font-size: 14px;
+}
+.flowers {
+  height: 112px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 -3px;
+}
+.fl {
+  position: absolute;
+  font-size: 66px;
+  text-shadow: 0 5px 14px #190b29;
+  animation: flowerSway 3s ease-in-out infinite alternate;
+}
+.f1 {
+  color: #d8a0ff;
+  left: 27%;
+  top: 13px;
+  transform: rotate(-15deg);
+}
+.f2 {
+  color: #ad69d9;
+  left: 38%;
+  top: -9px;
+}
+.f3 {
+  color: #e7c3ff;
+  left: 50%;
+  top: 11px;
+}
+.f4 {
+  color: #9754c8;
+  left: 59%;
+  top: -8px;
+}
+.f5 {
+  color: #be83e5;
+  left: 45%;
+  top: 37px;
+  font-size: 51px;
+}
+.f6 {
+  color: #d7a4ec;
+  left: 32%;
+  top: 45px;
+  font-size: 44px;
+}
+.stem {
+  color: #83a978;
+  font-size: 80px;
+  position: absolute;
+  top: 51px;
+}
+.ticket {
+  background: #faf2ff;
+  color: #4d2b62;
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 5px 35px #0004;
+  position: relative;
+}
+.ticket-head,
+.ticket-foot {
+  background: #e7cff5;
+  color: #714487;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 13px;
+}
+.ticket-mid {
+  padding: 18px 15px 14px;
+  border-left: 2px dashed #b98acb;
+  border-right: 2px dashed #b98acb;
+  margin: 0 12px;
+}
+.ticket-over {
+  font-size: 10px !important;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #9b6bb1 !important;
+}
+.ticket h3 {
+  font:
+    500 34px/1.08 "Playfair Display",
+    serif;
+  margin: 9px 0;
+}
+.ticket h3 i {
+  color: #9d5dbe;
+}
+.ticket-rule {
+  width: 65px;
+  height: 1px;
+  background: #c9a3db;
+  margin: 12px auto;
+}
+.ticket-mid > p:not(.ticket-over) {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #77588b;
+}
+.ticket-heart {
+  font-size: 28px;
+  color: #b37ecb;
+}
+.reward-final {
+  font-size: 13px;
+  color: #c5b1d0;
+  margin: 21px 0;
+}
+.reward-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.reward-replay {
+  border: 1px solid #8a699b;
+  background: none;
+  color: #e8d0f3;
+  border-radius: 6px;
+  padding: 14px;
+}
+.reward-replay:hover {
+  background: #ffffff12;
+}
+@keyframes rewardIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes flowerSway {
+  to {
+    translate: 0 -5px;
+  }
+}
+@media (max-width: 850px) {
+  #app {
+    padding: 0 18px;
+  }
+  .topbar {
+    height: 75px;
+  }
+  .top-tag {
+    display: none;
+  }
+  .hero {
+    padding: 28px 0 23px;
+  }
+  .hud {
+    padding: 12px 14px;
+  }
+  .hud-left {
+    min-width: 0;
+  }
+  .level-name {
+    font-size: 17px;
+  }
+  .hud-right {
+    gap: 12px;
+  }
+  .hud-right b {
+    font-size: 20px;
+  }
+  .hearts {
+    font-size: 21px;
+  }
+  .bottom-row {
+    padding: 12px 15px;
+    gap: 12px;
+  }
+  .tips {
+    display: none;
+  }
+  .footer {
+    font-size: 9px;
+  }
+}
+@media (max-width: 480px) {
+  #app {
+    padding: 0 9px;
+  }
+  .brand {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  .brand-symbol {
+    width: 37px;
+    height: 37px;
+  }
+  .brand small {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+  .hero .kicker {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .sub {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .game-shell {
+    border-radius: 9px;
+  }
+  .hud {
+    min-height: 76px;
+  }
+  .chapter,
+  .hud-label {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .level-name {
+    font-size: 14px;
+  }
+  .hearts {
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+  .hud-right {
+    gap: 8px;
+  }
+  .hud-right b {
+    font-size: 16px;
+  }
+  .touch-hint {
+    bottom: 4px;
+    font-size: 7px;
+    letter-spacing: 0.3px;
+    padding: 5px 8px;
+  }
+  .bottom-row {
+    min-height: 63px;
+  }
+  .progress {
+    width: 175px;
+  }
+  .restart {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .restart span {
+    display: none;
+  }
+  .footer {
+    justify-content: center;
+  }
+  .footer span:last-child {
+    display: none;
+  }
+  .overlay-inner {
+    padding: 5px 15px;
+  }
+  .seal {
+    width: 50px;
+    height: 50px;
+    font-size: 27px;
+    margin-bottom: 9px;
+  }
+  .overlay-kicker {
+    font-size: 9px;
+  }
+  .overlay-inner h2 {
+    font-size: 26px;
+    margin: 5px 0;
+  }
+  .overlay-inner p:not(.overlay-kicker) {
+    font-size: 11px;
+    line-height: 1.35;
+    margin: 5px 0 12px;
+  }
+  .overlay-inner .primary {
+    padding: 9px 14px;
+    font-size: 11px;
+  }
+  .reward-modal {
+    padding: 22px 18px;
+  }
+  .reward-modal h2 {
+    font-size: 35px;
+  }
+  .flowers {
+    height: 98px;
+  }
+}
+@media print {
+  body {
+    background: white !important;
+  }
+  #app,
+  .reward-close,
+  .reward-decor,
+  .reward-kicker,
+  .reward-modal > h2,
+  .reward-sub,
+  .flowers,
+  .reward-final,
+  .reward-actions {
+    display: none !important;
+  }
+  .reward-backdrop {
+    display: block;
+    position: static;
+    background: white;
+    padding: 0;
+  }
+  .reward-modal {
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+    background: white;
+    padding: 0;
+  }
+  .ticket {
+    margin: 90px auto;
+    width: 520px;
+    box-shadow: none;
+    border: 2px solid #9d69b4;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

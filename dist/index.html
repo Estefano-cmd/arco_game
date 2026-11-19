@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#140d2c" />
+    <meta
+      name="description"
+      content="Un viaje mágico de arco y flechas para desbloquear una cita entre flores moradas."
+    />
+    <title>El jardín de Cupido — una aventura para ti 💜</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-symbol">✦</span
+          ><span>EL JARDÍN <small>DE CUPIDO</small></span>
+        </div>
+        <div class="topright">
+          <span class="top-tag">UNA AVENTURA HECHA CON AMOR</span
+          ><button
+            class="iconbtn"
+            id="soundBtn"
+            aria-label="Activar o desactivar sonido"
+            title="Sonido"
+          >
+            ♪
+          </button>
+        </div>
+      </header>
+      <section class="hero">
+        <p class="kicker">
+          <span class="line"></span> UN PEQUEÑO JUEGO, UNA GRAN SORPRESA
+          <span class="line"></span>
+        </p>
+        <h1>
+          Donde las flechas <i>encuentran</i> el amor<span class="sparkle"
+            >✧</span
+          >
+        </h1>
+        <p class="sub">
+          Tres mundos encantados. Un corazón que conquistar. Una sorpresa que
+          vale la pena descubrir.
+        </p>
+      </section>
+      <section class="game-shell" aria-label="Videojuego de tiro con arco">
+        <div class="hud">
+          <div class="hud-left">
+            <span class="chapter" id="chapter">✦ CAPÍTULO I</span
+            ><span class="level-name" id="levelName"
+              >Bosque de los Susurros</span
+            >
+          </div>
+          <div class="hud-center">
+            <span class="hud-label">CORAZONES</span>
+            <div class="hearts" id="hearts">♡ ♡ ♡</div>
+          </div>
+          <div class="hud-right">
+            <div>
+              <span class="hud-label">TIEMPO</span><b id="timer">60s</b>
+            </div>
+            <div>
+              <span class="hud-label">PUNTOS</span><b id="score">0000</b>
+            </div>
+          </div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas
+            id="game"
+            width="1200"
+            height="620"
+            tabindex="0"
+            aria-label="Apunta con tu arco y dispara a los corazones móviles"
+          ></canvas>
+          <div class="game-overlay" id="overlay">
+            <div class="overlay-inner">
+              <div class="seal" id="overlayIcon">✧</div>
+              <p class="overlay-kicker" id="overlayKicker">
+                EL PRIMER CAPÍTULO
+              </p>
+              <h2 id="overlayTitle">El bosque te espera</h2>
+              <p id="overlayText">
+                Los corazones mágicos están escondidos entre los árboles.
+                ¿Podrás encontrarlos con tus flechas?
+              </p>
+              <button class="primary" id="overlayBtn">
+                Comenzar aventura <span>✦</span>
+              </button>
+            </div>
+          </div>
+          <div class="touch-hint" id="touchHint">
+            MANTÉN PRESIONADO · APUNTA · SUELTA PARA DISPARAR
+          </div>
+        </div>
+        <div class="bottom-row">
+          <div class="progress">
+            <span class="progress-title">TU VIAJE</span
+            ><span id="progressText">01 / 03</span>
+            <div class="progress-track"><div id="progressFill"></div></div>
+          </div>
+          <div class="tips">
+            <span class="mouse-icon">⌖</span
+            ><span
+              >Presiona, arrastra para apuntar y suelta para lanzar la
+              flecha</span
+            >
+          </div>
+          <button class="restart" id="restart">↻ <span>Reiniciar</span></button>
+        </div>
+      </section>
+      <footer class="footer">
+        <span>HECHO CON UN POQUITO DE MAGIA Y MUCHO CARIÑO</span
+        ><span>✿ &nbsp; PARA ALGUIEN MUY ESPECIAL &nbsp; ✿</span>
+      </footer>
+    </main>
+    <div class="reward-backdrop" id="reward" aria-hidden="true">
+      <div class="reward-modal">
+        <button id="rewardClose" class="reward-close" aria-label="Cerrar">
+          ×
+        </button>
+        <div class="reward-decor">✦ ✧ ✦</div>
+        <p class="reward-kicker">MISIÓN COMPLETADA · 3 DE 3</p>
+        <h2>¡Conquistaste<br /><i>mi corazón!</i></h2>
+        <p class="reward-sub">
+          Y como toda gran aventura merece un final precioso...
+        </p>
+        <div class="flowers" aria-label="Ramo de flores moradas">
+          <span class="fl f1">✿</span><span class="fl f2">✿</span
+          ><span class="fl f3">✿</span><span class="fl f4">✿</span
+          ><span class="fl f5">✿</span><span class="fl f6">✿</span
+          ><span class="stem">❦</span>
+        </div>
+        <div class="ticket">
+          <div class="ticket-head">✦ &nbsp; TU PREMIO ESPECIAL &nbsp; ✦</div>
+          <div class="ticket-mid">
+            <p class="ticket-over">UNA INVITACIÓN SOLO PARA TI</p>
+            <h3>Vale por una<br /><i>cita conmigo</i></h3>
+            <div class="ticket-rule"></div>
+            <p>
+              Una cita bonita, momentos juntos<br />y un ramo de flores moradas.
+              💜
+            </p>
+            <span class="ticket-heart">♡</span>
+          </div>
+          <div class="ticket-foot">
+            SIN FECHA DE CADUCIDAD &nbsp;·&nbsp; CON TODO MI CARIÑO
+          </div>
+        </div>
+        <p class="reward-final">
+          La verdadera recompensa es compartir el tiempo contigo.
+        </p>
+        <div class="reward-actions">
+          <button class="primary" id="saveTicket">Guardar mi ticket ♡</button
+          ><button class="reward-replay" id="replay">Volver a jugar</button>
+        </div>
+      </div>
+    </div>
+    <script src="/game.js"></script>
+  </body>
+</html>
